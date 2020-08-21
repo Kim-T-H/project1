@@ -66,4 +66,6 @@ public class UserDao {
 		param.put("newpw", newpw);
 		template.getMapper(UserMapper.class).changepw(param);
 	}
+
+	
 }

@@ -61,7 +61,12 @@ input[type=text]:focus {
 </style>
 </head>
 <body>
+
 	<h6>TIL 상세화면</h6>
+	
+	
+	
+	
 	<table id="customers">
 		<tr>
 			<td>${til.name}</td>
@@ -83,20 +88,16 @@ input[type=text]:focus {
 								<input type="button" value="구독 취소 " id=subdelete>
 							</td>
 						</c:if>	
+			<div style="position: fixed; top: 112px;">
+					
+						<input type="button" value="☆ " id=likeinsert>
+						<input type="button" value="★ " id=likedelete>
+					
+			</div>
 
 				</c:when>
 			</c:choose>
-		 
-<%--
-			<c:if test="${til.name != sessionScope.loginUser.name}">
-				<td>
-					<c:if test=''
-					<input type="button" value="구독 " id=subinsert> 
-					<input type="button" value="구독 취소 " id=subdelete>
-				</td>
-			</c:if>
- --%>		
-
+		
 			
 
 
@@ -155,7 +156,14 @@ input[type=text]:focus {
 
 
 	<input type="hidden" id="per" value="${sub.scrapper}">
-	<input type="hidden" id="ped" value="${sub.scrapped}"> 
+	<input type="hidden" id="ped" value="${sub.scrapped}">
+	
+	<input type="hidden" id="like" value="${goodorbad.wno}">
+	<input type="hidden" id="likename" value="${goodorbad.name}">
+	
+	<input type="hidden" id="no" value="${til.no}">
+	<input type="hidden" id="bno" value="${til.bno}">
+	
 	<input type="hidden" name="scrapper" id="scrapper"
 		value="${sessionScope.loginUser.name}">
 	<input type="hidden" name="scrapped" id="scrapped" value="${til.name}">
@@ -221,6 +229,69 @@ input[type=text]:focus {
 			}
 		})
 	})  
+	
+	
+	//좋아요
+	
+	function likeview() {
+			
+			var chk = false;
+			if(($("#likename").val()) == ($("#scrapper").val()) && ($("#like").val()) == "1" ){
+				chk=true;
+			}
+			
+			if(chk){
+				$("#likeinsert").hide();
+				$("#likedelete").show();
+			}else{
+				$("#likeinsert").show();
+				$("#likedelete").hide();
+			}
+		}  
+	
+	
+	$(document).on("click", "#likeinsert", function () {
+		console.log("click");
+		$.ajax({
+			type: "post",
+			url: '${path}/ajax/likeinsert.dev',
+			data : {
+				wno: ${til.bno},
+				name : $("#scrapper").val()
+			},
+			success : function (res) { 
+				alert("좋아요 성공");
+				location.reload();
+			},
+			error: function (e) {
+				console.log("e: "+e.status);
+			}
+		}) 
+	})
+	
+	
+	
+	$(document).on("click", "#likedelete", function () {
+		$.ajax({
+			type: "post",
+			url: '${path}/ajax/likedelete.dev',
+			data : {
+				no :${til.no},
+				wno:${til.bno},
+				name : $("#scrapper").val()
+			},
+			success : function (res) {
+				alert("좋아요 취소");
+				location.reload();
+			},
+			error: function (e) {
+				console.log("e: "+e.status);
+				
+			}
+		})
+	})  
+	
+	
 	
 	})
 

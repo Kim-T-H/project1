@@ -51,7 +51,7 @@
 				<li class="menu-li"><a href="${path}/til/main.dev">TIL</a>
 				<ul>
 						<li><a href="${path}/til/main.dev?no=3">TIL 페이지 목록</a></li>
-						<li><a href="${path}/til/list.dev?no=5">구독한 사용자 목록</a></li>
+						<li><a href="${path}/til/subuser.dev">구독한 사용자 목록</a></li>
 				</ul></li>
 				<li class="sub-menu menu-li"><a href="#">Community</a>
 					<ul>

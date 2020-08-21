@@ -1,5 +1,6 @@
 package dao.mapper;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Delete;
@@ -19,5 +20,8 @@ public interface SubscribeMapper {
 
 	@Select("select * from subscribe where scrapper=#{scrapper} and scrapped=#{scrapped}")
 	Subscribe getSubscribe(Map<String, Object> param);
+	
+	@Select("select * from subscribe")
+	List<Subscribe> getsubuser();
 
 }

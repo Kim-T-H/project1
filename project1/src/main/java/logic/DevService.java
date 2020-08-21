@@ -17,10 +17,12 @@ import dao.MessageDao;
 import dao.ReplyDao;
 import dao.ReportDao;
 import dao.SubcribeDao;
+
 import dao.TilDao;
 import dao.UserDao;
 import dao.UserGroupDao;
 import dao.fileDao;
+import dao.goodorbadDao;
 
 @Service
 public class DevService {
@@ -54,6 +56,10 @@ public class DevService {
 	
 	@Autowired
 	private SubcribeDao subcribeDao;
+	
+	@Autowired
+	private goodorbadDao goodorbadDao;
+	
 	
 	private Map<String, Object> map = new HashMap<>();
 
@@ -319,4 +325,31 @@ public class DevService {
 	public List<TIL> mytillist(String name) {
 		return tilDao.mytillist(name);
 	}
+
+	public List<Subscribe> getsubuser() {
+		return subcribeDao.getsubuser();
+	}
+
+	public int getGno(Integer no, Integer bno, String name) {
+		return goodorbadDao.getlike(no,bno,name);
+	}
+
+	public void likeinsert(Goodorbad gob) {
+		goodorbadDao.insert(gob);
+		
+	}
+
+	public int getmaxgno(int no, int wno) {
+		return goodorbadDao.getmaxgno(no,wno);
+	}
+
+	public void likedelete(int no, int wno, String name) {
+		goodorbadDao.likedelete(no,wno, name);
+	}
+
+	
+	
+
+
+	
 }

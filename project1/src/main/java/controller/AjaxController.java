@@ -9,23 +9,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
+
 
 import logic.Coworking;
 import logic.DevService;
+import logic.Goodorbad;
 import logic.Hashtag;
 import logic.Message;
 import logic.Reply;
 import logic.Report;
 import logic.SNSFile;
 import logic.Subscribe;
-import logic.TIL;
+
 import logic.User;
 
 @RestController // @ResponseBody: View 없이 직접 데이터를 클라이언트에 전송
@@ -259,6 +260,8 @@ public class AjaxController {
 		return sb.toString();
 	}
 	
+	
+	// 구독
 	@PostMapping(value = "subinsert", produces="text/plain; charset=UTF-8")
 	public String subinsert(HttpServletRequest request, HttpSession session) {
 		Subscribe sub = new Subscribe(); //로직 호출
@@ -295,6 +298,33 @@ public class AjaxController {
 		
 		return null;
 	}
+	
+	
+	
+	//좋아요
+	
+		@PostMapping(value = "likeinsert", produces="text/plain; charset=UTF-8")
+		public String likeinsert(HttpServletRequest request, HttpSession session) {
+			Goodorbad gob= new Goodorbad();
+			gob.setNo(3);
+			int wno = Integer.parseInt(request.getParameter("wno"));
+			gob.setWno(wno);
+			gob.setName(((User)session.getAttribute("loginUser")).getName());
+			gob.setGno(service.getmaxgno(3, wno)+1);
+			System.out.println(gob);
+			service.likeinsert(gob);
+			return null;
+		}
+		
+		@PostMapping(value = "likedelete", produces="text/plain; charset=UTF-8")
+		public String likedelete(HttpServletRequest request, HttpSession session) {
+			int wno = Integer.parseInt(request.getParameter("wno"));
+			int no = Integer.parseInt(request.getParameter("no"));
+			String name = request.getParameter("name");
+			service.likedelete(no, wno, name);
+			
+			return null;
+		}
 	
 	
 	

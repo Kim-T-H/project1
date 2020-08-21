@@ -1,17 +1,17 @@
 package dao;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+
 import org.springframework.stereotype.Repository;
 
-import dao.mapper.ReplyMapper;
+
 import dao.mapper.SubscribeMapper;
-import logic.Reply;
+
 import logic.Subscribe;
 
 @Repository
@@ -31,6 +31,8 @@ public class SubcribeDao {
 	}
 
 	public void delete(Subscribe sub) {
+		System.out.println("+++++++++++++++++");
+		System.out.println(sub);
 		template.getMapper(SubscribeMapper.class).delete(sub); 
 		
 	}
@@ -40,6 +42,10 @@ public class SubcribeDao {
 		param.put("scrapper",scrapper);
 		param.put("scrapped",scrapped);
 		return template.getMapper(SubscribeMapper.class).getSubscribe(param);
+	}
+
+	public List<Subscribe> getsubuser() {
+		return template.getMapper(SubscribeMapper.class).getsubuser();
 	}
 
 }
