@@ -18,14 +18,7 @@ public class goodorbadDao {
 	@Autowired
 	private SqlSessionTemplate template;
 	private Map<String,Object> param = new HashMap<>();
-	public int getlike(Integer no, Integer bno, String name) {
-	param.clear();
-	param.put("no",no);
-	param.put("bno",bno);
-	param.put("name",name);
-	System.out.println(param);
-	return template.getMapper(GoodorbadMapper.class).getSubscribe(param);
-	}
+	
 	
 	public void insert(Goodorbad gob) {
 		template.getMapper(GoodorbadMapper.class).insert(gob);
@@ -45,6 +38,16 @@ public class goodorbadDao {
 		param.put("name",name);
 		System.out.println(param);
 		template.getMapper(GoodorbadMapper.class).likedelete(param);
+	}
+
+	public Goodorbad getlike(Integer no, int wno, String name) {
+		param.clear();
+		param.put("no",no);
+		param.put("wno",wno);
+		param.put("name",name);
+		
+		System.out.println(param);
+		return template.getMapper(GoodorbadMapper.class).getlike(param);
 	}
 	
 	

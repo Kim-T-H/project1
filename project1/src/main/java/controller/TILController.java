@@ -18,7 +18,7 @@ import exception.BoardException;
 
 import logic.DevService;
 import logic.Goodorbad;
-import logic.Report;
+
 import logic.Subscribe;
 import logic.TIL;
 import logic.User;
@@ -145,10 +145,22 @@ public class TILController {
 			sub = service.getSubscribe(scrapper, scrapped);
 			mav.addObject("sub",sub);
 			
-			String name=((User)session.getAttribute("loginUser")).getName();
-			int gno = service.getGno(no,bno,name);
-			mav.addObject("gno", gno);
 			
+			
+			
+			String name=((User)session.getAttribute("loginUser")).getName();
+			int wno=til.getBno();
+
+			Goodorbad gob= new Goodorbad();
+			gob = service.getPoint(no,wno,name); 
+			mav.addObject("gob", gob);
+			
+			int count = service.getcount(no,bno);
+			mav.addObject("count",count);
+			
+			
+			System.out.println(gob);
+			System.out.println("??????????????????");
 			System.out.println(sub);
 		}
 		

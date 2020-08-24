@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>CardEx2</title>
+<title>TIL</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet"
@@ -154,5 +154,12 @@ section {
 			</div>
 		</div>
 	</section>
+	
+	<script type="text/javascript">
+		
+	
+	
+	</script>
+	
 </body>
 </html>

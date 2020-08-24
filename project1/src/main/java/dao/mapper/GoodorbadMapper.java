@@ -10,8 +10,7 @@ import logic.Goodorbad;
 
 public interface GoodorbadMapper {
 
-	@Select("select IFNULL(MAX(gno),0) gno from goodorbad where no=#{no} and wno=#{bno} and name=#{name}")
-	int getSubscribe(Map<String, Object> param);
+	
 	
 	
 	@Insert("insert into goodorbad (no,wno,gno,name, point, regdate) "
@@ -24,6 +23,9 @@ public interface GoodorbadMapper {
 
 	@Delete("delete from goodorbad where no = #{no} and wno = #{wno} and name = #{name}")
 	void likedelete(Map<String, Object> param);
+
+	@Select("select * from goodorbad where no=#{no} and wno=#{wno} and name=#{name}")
+	Goodorbad getlike(Map<String, Object> param);
 
 	
 

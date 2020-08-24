@@ -92,7 +92,7 @@ input[type=text]:focus {
 					
 						<input type="button" value="☆ " id=likeinsert>
 						<input type="button" value="★ " id=likedelete>
-					
+						<h3>좋아요 수:${count}</h3>
 			</div>
 
 				</c:when>
@@ -158,8 +158,10 @@ input[type=text]:focus {
 	<input type="hidden" id="per" value="${sub.scrapper}">
 	<input type="hidden" id="ped" value="${sub.scrapped}">
 	
-	<input type="hidden" id="like" value="${goodorbad.wno}">
-	<input type="hidden" id="likename" value="${goodorbad.name}">
+	
+	<input type="hidden" id="likename" value="${gob.name}">
+	<input type="hidden" id="likeno" value="${gob.no}">
+	<input type="hidden" id="likewno" value="${gob.wno}">
 	
 	<input type="hidden" id="no" value="${til.no}">
 	<input type="hidden" id="bno" value="${til.bno}">
@@ -172,7 +174,8 @@ input[type=text]:focus {
 
 	$(function() {
 		subview()
-	
+		likeview()
+		
 		function subview() {
 			
 			var chk = false;
@@ -187,7 +190,7 @@ input[type=text]:focus {
 				$("#subinsert").show();
 				$("#subdelete").hide();
 			}
-		}  
+		} 
 	
 	
 	
@@ -236,7 +239,7 @@ input[type=text]:focus {
 	function likeview() {
 			
 			var chk = false;
-			if(($("#likename").val()) == ($("#scrapper").val()) && ($("#like").val()) == "1" ){
+			if(($("#likename").val()) == ($("#scrapper").val()) && ($("#no").val()) == ($("#likeno").val()) && ($("#bno").val()) == ($("#likewno").val())){
 				chk=true;
 			}
 			
@@ -285,7 +288,7 @@ input[type=text]:focus {
 				location.reload();
 			},
 			error: function (e) {
-				console.log("e: "+e.status);
+				console.log("e: "+e.status); 
 				
 			}
 		})

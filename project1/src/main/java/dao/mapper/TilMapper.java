@@ -36,4 +36,7 @@ public interface TilMapper {
 	@Select("select * from board where no = 3 and name=#{name} ORDER BY regdate desc")
 	List<TIL> mytillist(Map<String, Object> param);
 
+	@Select("SELECT IFNULL(COUNT(*),0) FROM goodorbad WHERE NO=#{no} AND wno=#{bno}")
+	int getcount(Map<String, Object> param);
+
 }

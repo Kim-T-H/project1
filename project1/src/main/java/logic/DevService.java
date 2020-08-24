@@ -330,9 +330,7 @@ public class DevService {
 		return subcribeDao.getsubuser();
 	}
 
-	public int getGno(Integer no, Integer bno, String name) {
-		return goodorbadDao.getlike(no,bno,name);
-	}
+	
 
 	public void likeinsert(Goodorbad gob) {
 		goodorbadDao.insert(gob);
@@ -346,6 +344,16 @@ public class DevService {
 	public void likedelete(int no, int wno, String name) {
 		goodorbadDao.likedelete(no,wno, name);
 	}
+
+	public Goodorbad getPoint(Integer no, int wno, String name) {
+		return goodorbadDao.getlike(no, wno, name);
+	}
+
+	public int getcount(Integer no, Integer bno) {
+		return tilDao.getcount(no,bno);
+	}
+
+	
 
 	
 	
