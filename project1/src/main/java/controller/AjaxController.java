@@ -282,6 +282,9 @@ public class AjaxController {
 	
 	@PostMapping(value = "subdelete", produces="text/plain; charset=UTF-8")
 	public String subdelete(HttpServletRequest request, HttpSession session) {
+		
+		
+		
 		Subscribe sub = new Subscribe(); //로직 호출
 		
 		String scrapped = request.getParameter("name"); 

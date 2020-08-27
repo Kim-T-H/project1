@@ -170,16 +170,23 @@ public class TILController {
 	
 	
 	@RequestMapping("subuser")
-	public ModelAndView subuser(Subscribe sub, HttpServletRequest request, HttpSession session) {
+	public ModelAndView subuser(Integer no, Integer bno, HttpServletRequest request, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
+		TIL til = null;
+		if (bno == null) { 
+			til = new TIL();
+		} else {
+
+			til = service.getTil(no, bno); // board:파라미터 bno에 해당하는 게시물 정보 저장
+			System.out.println(
+					"===============================================================================================");
+		}
 		
-		
-		User scrapper = (User)session.getAttribute("loginUser");
-		sub.setScrapper(scrapper.getName());
 		List<User> list = service.getUserList();
 		List<Subscribe> subuser = service.getsubuser();
 		mav.addObject("list", list);
 		mav.addObject("subuser", subuser);
+		mav.addObject("til", til);
 
 		System.out.println("????"); 
 		System.out.println(list);
